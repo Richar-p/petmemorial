@@ -1,0 +1,285 @@
+<div class="loader"></div>
+<canvas id="tip" width=200 height=25></canvas>
+<canvas id="canvas"></canvas>
+<div id="buttons">
+  <a id="popupAdd" class="waves-effect waves-light btn-small btn-floating"><i class="material-icons">add</i></a>
+  <a id="popupInfo" class="waves-effect waves-light btn-small btn-floating"><i class="material-icons">info_outline</i></a>
+  <a href="http://paypal.me/RichardPeter" target="_blank" class="waves-effect waves-light btn-small btn-floating"><i class="material-icons">attach_money</i></a>
+</div>
+
+<div id="dialog-form" title="Ajouter un animal de compagnie">
+  <form enctype="multipart/form-data">
+    <fieldset>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <label for="pet[name]">Nom</label>
+      <input type="text" name="pet[name]" id="name" placeholder="Jane Smith" class="text ui-widget-content ui-corner-all">
+      <p id="error-name"></p>
+      <label for="pet[birth_date]">Date de naissance</label>
+      <input type="date" name="pet[birth_date]" id="birth_date" class="date ui-widget-content ui-corner-all">
+      <p id="error-birth_date"></p>
+      <label for="pet[death_date]">Date de départ au ciel</label>
+      <input type="date" name="pet[death_date]" id="death_date" class="date ui-widget-content ui-corner-all">
+      <p id="error-death_date"></p>
+      <label for="pet[race]">Espèce</label>
+      <select class="select ui-widget-content ui-corner-all" name="pet[race]" id="race">
+        <% for race in @races %>
+          <<option value="<%= race %>"><%= race %></option>
+        <% end %>
+      </select>
+      <!-- <input type="text" name="pet[race]" id="race" class="text ui-widget-content ui-corner-all"> -->
+      <p id="error-race"></p>
+      <label for="pet[country]">Pays</label>
+      <%= country_select("pet", "country", { class: 'select ui-widget-content ui-corner-all', id: 'country' }, selected: "GB") %>
+      <p id="error-country"></p>
+      <label for="pet[picture]">Photo</label>
+      <input type="file" name="pet[picture]" id="picture" class="file ui-widget-content ui-corner-all">
+      <p id="error-picture"></p>
+      <!-- Allow form submission with keyboard without duplicating the dialog button -->
+      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+    </fieldset>
+  </form>
+</div>
+
+<div id="dialog-message">
+  <div>
+    <span id="popup-pet-race" class="popup-pet-info"></span>
+    <span id="popup-pet-country" class="flag-icon"></span>
+  </div>
+  <p class="popup-pet-info">Né(e) le <span id="popup-pet-birth"></span></p>
+  <p class="popup-pet-info">Monté(e) au ciel le <span id="popup-pet-death"></span></p>
+  <img id="popup-pet-photo" src="" class="medium-zoom-image">
+</div>
+
+<div id="dialog-info" title="Bienvenue sur Pet Memorial !">
+  <p>
+    Ici vous trouverez une constellation d’étoiles, chacune représentant un animal de compagnie parti au ciel. 🙏🏻
+  </p>
+  <p>
+    Cliquez sur un point pour en apprendre davantage sur un animal, et n’hésitez pas à partager avec nous vos compagnons afin qu’ils rejoignent ce grand paradis virtuel. ✨
+  </p>
+  <p>
+    Ainsi, qu’ils soient à poils, à plumes, à écailles ou autres, nos animaux adorés resteront à jamais sur Pet Memorial ! 💕
+  </p>
+  <p style="font-size: 9px;">Favicon made by <a style="font-size: 9px;" href="https://www.flaticon.com/authors/freepik">Freepik</a> from <a style="font-size: 9px;" href="https://www.flaticon.com/"> www.flaticon.com</a></p>
+</div>
+
+<script type="text/javascript">
+  var particles = [];
+  var tipCanvas = document.getElementById("tip");
+  var tipCtx = tipCanvas.getContext("2d");
+
+  let resizeReset = function() {
+    w = canvasBody.width = window.innerWidth;
+    h = canvasBody.height = window.innerHeight;
+  }
+
+  const opts = {
+    particleColor: "rgb(200,200,200)",
+    lineColor: "rgb(200,200,200)",
+    particleAmount: <%= @pets.count %>,
+    defaultSpeed: 0.15,
+    variantSpeed: 0.05,
+    defaultRadius: 3,
+    variantRadius: 1,
+    linkRadius: 100,
+  };
+
+  window.addEventListener("resize", function(){
+    deBouncer();
+  });
+
+  let deBouncer = function() {
+      clearTimeout(tid);
+      tid = setTimeout(function() {
+          resizeReset();
+      }, delay);
+  };
+
+  window.addEventListener('mousemove', e => {
+    mouseX = parseInt(e.clientX - $('#canvas').offset().left);
+    mouseY = parseInt(e.clientY - $('#canvas').offset().top);
+
+    // Put your mousemove stuff here
+    var hit = false;
+    for (var i = 0; i < particles.length; i++) {
+        var particle = particles[i];
+        var dx = mouseX - particle.x;
+        var dy = mouseY - particle.y;
+        if (dx * dx + dy * dy < Math.pow(particle.radius,2)) {
+            particle.speed = 0
+            tipCanvas.style.left = (particle.x) + "px";
+            tipCanvas.style.top = (particle.y - 40) + "px";
+            tipCtx.clearRect(0, 0, tipCanvas.width, tipCanvas.height);
+            tipCtx.fillText(particle.name + ', ' + particle.race + ', ' + particle.country, 5, 15);
+            hit = true;
+        }
+    }
+    if (!hit) {
+        tipCanvas.style.left = "-2000px";
+    }
+  });
+
+  let checkDistance = function(x1, y1, x2, y2){
+    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+  };
+
+  let linkPoints = function(point1, hubs){
+    for (let i = 0; i < hubs.length; i++) {
+      let distance = checkDistance(point1.x, point1.y, hubs[i].x, hubs[i].y);
+      let opacity = 1 - distance / opts.linkRadius;
+      if (opacity > 0) {
+        drawArea.lineWidth = 0.5;
+        drawArea.strokeStyle = `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${opacity})`;
+        drawArea.beginPath();
+        drawArea.moveTo(point1.x, point1.y);
+        drawArea.lineTo(hubs[i].x, hubs[i].y);
+        drawArea.closePath();
+        drawArea.stroke();
+      }
+    }
+  }
+
+  Particle = function(xPos, yPos, name, country, race, birth_date, death_date, picture){
+    this.name = name;
+    this.country = country;
+    this.race = race;
+    this.birth_date = birth_date;
+    this.death_date = death_date;
+    this.picture = picture;
+    this.x = Math.random() * w;
+    this.y = Math.random() * h;
+    this.speed = opts.defaultSpeed + Math.random() * opts.variantSpeed;
+    this.directionAngle = Math.floor(Math.random() * 360);
+    this.color = opts.particleColor;
+    this.radius = opts.defaultRadius + Math.random() * opts. variantRadius;
+    this.vector = {
+      x: Math.cos(this.directionAngle) * this.speed,
+      y: Math.sin(this.directionAngle) * this.speed
+    };
+    this.update = function(){
+      this.border();
+      this.x += this.vector.x;
+      this.y += this.vector.y;
+    };
+    this.border = function(){
+      if (this.x >= w || this.x <= 0) {
+        this.vector.x *= -1;
+      }
+      if (this.y >= h || this.y <= 0) {
+        this.vector.y *= -1;
+      }
+      if (this.x > w) this.x = w;
+      if (this.y > h) this.y = h;
+      if (this.x < 0) this.x = 0;
+      if (this.y < 0) this.y = 0;
+    };
+    this.draw = function(){
+      drawArea.beginPath();
+      drawArea.arc(this.x, this.y, this.radius, 0, Math.PI*2);
+      drawArea.closePath();
+      drawArea.fillStyle = this.color;
+      drawArea.fill();
+    };
+  };
+
+  function setup(){
+    resizeReset();
+    <% for pet in @pets %>
+      particles.push( new Particle(0,0, "<%= pet.name %>", "<%= pet.country %>", "<%= pet.race %>", "<%= pet.birth_date.strftime('%d/%m/%Y') %>", "<%= pet.death_date.strftime('%d/%m/%Y') %>", "<%= pet.picture.present? ? url_for(pet.picture) : nil %>") );
+    <% end %>
+    window.requestAnimationFrame(loop);
+  }
+
+  function loop(){
+    window.requestAnimationFrame(loop);
+    drawArea.clearRect(0,0,w,h);
+    for (let i = 0; i < particles.length; i++){
+      particles[i].update();
+      particles[i].draw();
+    }
+    for (let i = 0; i < particles.length; i++){
+      linkPoints(particles[i], particles);
+    }
+  }
+
+  dialog = $( "#dialog-form" ).dialog({
+    autoOpen: false,
+    height: 400,
+    width: 350,
+    buttons: {
+      "Ajouter un animal": function() {
+        $.ajax({
+          url : '/addpet',
+          type: 'POST',
+          processData: false,
+          contentType: false,
+          data: new FormData(document.getElementById('dialog-form').querySelector('form')),
+          success: function(response){
+            dialog.dialog( "close" );
+            $('#dialog-form form')[0].reset()
+            M.toast({ html: "Votre contribution a été envoyée avec succès, un administrateur doit maintenant la valider pour qu\'elle apparaisse", displayLength: 7000})
+          },
+          error: function(response){
+            Object.keys(response['responseJSON']).forEach(function(key) {
+              document.getElementById('error-' + key).innerHTML = response['responseJSON'][key][0]
+            });
+          }
+        });
+      },
+      Annuler: function() {
+        dialog.dialog( "close" );
+      }
+    }
+  });
+
+  $( "#popupAdd" ).on( "click", function() {
+    dialog.dialog( "open" );
+  });
+
+  var popuppet = $( "#dialog-message" ).dialog({
+    autoOpen: false
+  });
+
+  window.addEventListener('mousedown', e => {
+    mouseX = parseInt(e.clientX - $('#canvas').offset().left);
+    mouseY = parseInt(e.clientY - $('#canvas').offset().top);
+
+    for (var i = 0; i < particles.length; i++) {
+      var particle = particles[i];
+      var dx = mouseX - particle.x;
+      var dy = mouseY - particle.y;
+      if (dx * dx + dy * dy < Math.pow(particle.radius,2)) {
+        $('#popup-pet-photo').prop('src', particle.picture)
+        $('#dialog-message').dialog( "option", "title", particle.name );
+        $('#popup-pet-country').addClass('flag-icon-' + particle.country.toLowerCase());
+        document.getElementById('popup-pet-race').innerHTML = particle.race
+        document.getElementById('popup-pet-birth').innerHTML = particle.birth_date
+        document.getElementById('popup-pet-death').innerHTML = particle.death_date
+        popuppet.dialog("open")
+      }
+    }
+  });
+
+
+  var popupinfo = $( "#dialog-info" ).dialog({
+    autoOpen: false,
+  });
+
+  $( "#popupInfo" ).on( "click", function() {
+    popupinfo.dialog( "open" );
+  });
+
+
+  const canvasBody = document.getElementById("canvas"),
+  drawArea = canvasBody.getContext("2d");
+  let delay = 200, tid,
+  rgb = opts.lineColor.match(/\d+/g);
+  resizeReset();
+  setup();
+  mediumZoom('#popup-pet-photo')
+  $('select').select2({ width: '100%' });
+
+  $(window).on('load', function(){
+    $(".loader").fadeOut("1000");
+  })
+</script>

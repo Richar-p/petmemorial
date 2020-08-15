@@ -15,5 +15,15 @@ module PetMemorial
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+    config.assets.enabled = true
+    config.encoding = "utf-8"
+    config.i18n.default_locale = :fr
+  end
+end
+
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    origins '*'
+    resource '*', headers: :any, methods: [:get, :post, :patch, :put]
   end
 end
