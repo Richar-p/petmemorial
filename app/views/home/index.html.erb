@@ -105,16 +105,18 @@
         var particle = particles[i];
         var dx = mouseX - particle.x;
         var dy = mouseY - particle.y;
-        if (dx * dx + dy * dy < Math.pow(particle.radius,2)) {
+        if (dx * dx + dy * dy < Math.pow(particle.radius,2)+2000) {
             particle.speed = 0
             tipCanvas.style.left = (particle.x) + "px";
             tipCanvas.style.top = (particle.y - 40) + "px";
             tipCtx.clearRect(0, 0, tipCanvas.width, tipCanvas.height);
             tipCtx.fillText(particle.name + ', ' + particle.race + ', ' + particle.country, 5, 15);
+            $("body").css("cursor", "pointer");
             hit = true;
         }
     }
     if (!hit) {
+        $("body").css("cursor", "default");
         tipCanvas.style.left = "-2000px";
     }
   });
@@ -248,7 +250,7 @@
       var particle = particles[i];
       var dx = mouseX - particle.x;
       var dy = mouseY - particle.y;
-      if (dx * dx + dy * dy < Math.pow(particle.radius,2)) {
+      if (dx * dx + dy * dy < Math.pow(particle.radius,2)+2000) {
         $('#popup-pet-photo').prop('src', particle.picture)
         $('#dialog-message').dialog( "option", "title", particle.name );
         sessionStorage.setItem('flag', 'flag-icon-' + particle.country.toLowerCase())
