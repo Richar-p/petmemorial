@@ -14,23 +14,22 @@
       <label for="pet[name]">Nom</label>
       <input type="text" name="pet[name]" id="name" placeholder="Jane Smith" class="text ui-widget-content ui-corner-all">
       <p id="error-name"></p>
-      <label for="pet[birth_date]">Date de naissance</label>
-      <input type="date" name="pet[birth_date]" id="birth_date" class="date ui-widget-content ui-corner-all">
-      <p id="error-birth_date"></p>
-      <label for="pet[death_date]">Date de départ au ciel</label>
-      <input type="date" name="pet[death_date]" id="death_date" class="date ui-widget-content ui-corner-all">
-      <p id="error-death_date"></p>
       <label for="pet[race]">Espèce</label>
       <select class="select ui-widget-content ui-corner-all" name="pet[race]" id="race">
         <% for race in @races %>
           <<option value="<%= race %>"><%= race %></option>
         <% end %>
       </select>
-      <!-- <input type="text" name="pet[race]" id="race" class="text ui-widget-content ui-corner-all"> -->
       <p id="error-race"></p>
       <label for="pet[country]">Pays</label>
       <%= country_select("pet", "country", { class: 'select ui-widget-content ui-corner-all', id: 'country' }, selected: "GB") %>
       <p id="error-country"></p>
+      <label for="pet[birth_date]">Date de naissance</label>
+      <input type="date" name="pet[birth_date]" id="birth_date" class="date ui-widget-content ui-corner-all">
+      <p id="error-birth_date"></p>
+      <label for="pet[death_date]">Date de départ au ciel</label>
+      <input type="date" name="pet[death_date]" id="death_date" class="date ui-widget-content ui-corner-all">
+      <p id="error-death_date"></p>
       <label for="pet[picture]">Photo</label>
       <input type="file" name="pet[picture]" id="picture" class="file ui-widget-content ui-corner-all">
       <p id="error-picture"></p>
