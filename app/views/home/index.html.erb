@@ -251,6 +251,7 @@
       var dx = mouseX - particle.x;
       var dy = mouseY - particle.y;
       if (dx * dx + dy * dy < Math.pow(particle.radius,2)+2000) {
+        clearpetpopup();
         $('#popup-pet-photo').prop('src', particle.picture)
         $('#dialog-message').dialog( "option", "title", particle.name );
         sessionStorage.setItem('flag', 'flag-icon-' + particle.country.toLowerCase())
@@ -264,12 +265,16 @@
   });
 
   $('#dialog-message').on('dialogclose', function(event) {
-       $('#popup-pet-country').removeClass(sessionStorage.getItem('flag'));
-       $('#popup-pet-photo').prop('src', '')
-       document.getElementById('popup-pet-race').innerHTML = ''
-       document.getElementById('popup-pet-birth').innerHTML = ''
-       document.getElementById('popup-pet-death').innerHTML = ''
+       clearpetpopup();
    });
+
+   var clearpetpopup = function() {
+     $('#popup-pet-country').removeClass(sessionStorage.getItem('flag'));
+     $('#popup-pet-photo').prop('src', '')
+     document.getElementById('popup-pet-race').innerHTML = ''
+     document.getElementById('popup-pet-birth').innerHTML = ''
+     document.getElementById('popup-pet-death').innerHTML = ''
+   }
 
   var popupinfo = $( "#dialog-info" ).dialog({
     autoOpen: false,
