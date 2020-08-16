@@ -1,5 +1,5 @@
 ActiveAdmin.register Pet do
-  actions :all, :except => [:create, :new, :edit]
+  actions :all, :except => [:create, :new]
 
   scope :all, default: true
   scope('Need validation') { |pet| pet.where(is_published: false) }
@@ -24,7 +24,7 @@ ActiveAdmin.register Pet do
     redirect_to admin_pet_path(pet)
   end
 
-  permit_params :is_published
+  permit_params :country, :name, :birth_date, :death_date, :race, :is_published
 
   show do
     attributes_table do
@@ -39,12 +39,5 @@ ActiveAdmin.register Pet do
       end
     end
     active_admin_comments
-  end
-
-  form do |f|
-    f.inputs do
-      f.input :is_published
-    end
-    f.actions
   end
 end
