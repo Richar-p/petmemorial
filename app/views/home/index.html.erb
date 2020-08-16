@@ -7,7 +7,7 @@
   <a href="http://paypal.me/RichardPeter" target="_blank" class="waves-effect waves-light btn-small btn-floating"><i class="material-icons">attach_money</i></a>
 </div>
 
-<div id="dialog-form" title="Ajouter un animal de compagnie">
+<div id="dialog-form" title="Ajouter un animal de compagnie" style="height: 600px;">
   <form enctype="multipart/form-data">
     <fieldset>
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
@@ -205,7 +205,7 @@
 
   dialog = $( "#dialog-form" ).dialog({
     autoOpen: false,
-    height: 400,
+    height: 600,
     width: 350,
     buttons: {
       "Ajouter un animal": function() {
