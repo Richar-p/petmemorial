@@ -251,6 +251,7 @@
       if (dx * dx + dy * dy < Math.pow(particle.radius,2)) {
         $('#popup-pet-photo').prop('src', particle.picture)
         $('#dialog-message').dialog( "option", "title", particle.name );
+        sessionStorage.setItem('flag', 'flag-icon-' + particle.country.toLowerCase())
         $('#popup-pet-country').addClass('flag-icon-' + particle.country.toLowerCase());
         document.getElementById('popup-pet-race').innerHTML = particle.race
         document.getElementById('popup-pet-birth').innerHTML = particle.birth_date
@@ -260,6 +261,9 @@
     }
   });
 
+  $('#dialog-message').on('dialogclose', function(event) {
+       $('#popup-pet-country').removeClass(sessionStorage.getItem('flag'));
+   });
 
   var popupinfo = $( "#dialog-info" ).dialog({
     autoOpen: false,
