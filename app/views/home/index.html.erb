@@ -228,14 +228,20 @@
         });
       },
       Annuler: function() {
+        sessionStorage.setItem('add-popup', 0);
         dialog.dialog( "close" );
       }
     }
   });
 
   $( "#popupAdd" ).on( "click", function() {
+    sessionStorage.setItem('add-popup', 1);
     dialog.dialog( "open" );
   });
+
+  $("#dialog-form").on('dialogclose', function(event) {
+    sessionStorage.setItem('add-popup', 0);
+   });
 
   var popuppet = $( "#dialog-message" ).dialog({
     autoOpen: false
@@ -249,7 +255,7 @@
       var particle = particles[i];
       var dx = mouseX - particle.x;
       var dy = mouseY - particle.y;
-      if (dx * dx + dy * dy < Math.pow(particle.radius,2)+2000) {
+      if ((dx * dx + dy * dy < Math.pow(particle.radius,2)+2000) && sessionStorage.getItem('add-popup') == 0) {
         clearpetpopup();
         $('#popup-pet-photo').prop('src', particle.picture)
         $('#dialog-message').dialog( "option", "title", particle.name );
@@ -293,6 +299,7 @@
   setup();
   mediumZoom('#popup-pet-photo')
   $('select').select2({ width: '100%' });
+  sessionStorage.setItem('add-popup', 0);
 
   $(window).on('load', function(){
     $(".loader").fadeOut("1000");
