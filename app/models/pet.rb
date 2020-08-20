@@ -1,5 +1,5 @@
 class Pet < ApplicationRecord
-  RACE = %w[Chien Chat Furet Volatile Bovidé Reptile Arachnide Amphibien Équidé Rongeur Poisson]
+  RACE = %w[Chien Chat Furet Volatile Bovidé Reptile Arachnide Amphibien Équidé Rongeur Lapin Poisson]
 
   has_one_attached :picture
   validates :name, :country, :race, :birth_date, :death_date, presence: true
