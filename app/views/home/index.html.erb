@@ -1,66 +1,8 @@
-<div class="loader"></div>
-<canvas id="tip" width=200 height=25 style="left: -2000px;"></canvas>
-<canvas id="canvas"></canvas>
-<div id="buttons">
-  <a id="popupAdd" class="waves-effect waves-light btn-small btn-floating"><i class="material-icons">add</i></a>
-  <a id="popupInfo" class="waves-effect waves-light btn-small btn-floating"><i class="material-icons">info_outline</i></a>
-  <a href="http://paypal.me/RichardPeter" target="_blank" class="waves-effect waves-light btn-small btn-floating"><i class="material-icons">attach_money</i></a>
-</div>
-
-<div id="dialog-form" title="Ajouter un animal de compagnie" style="height: 600px;">
-  <form enctype="multipart/form-data">
-    <fieldset>
-      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-      <label for="pet[name]">Nom</label>
-      <input type="text" name="pet[name]" id="name" placeholder="Jane Smith" class="text ui-widget-content ui-corner-all">
-      <p id="error-name"></p>
-      <label for="pet[race]">Espèce</label>
-      <select class="select ui-widget-content ui-corner-all" name="pet[race]" id="race">
-        <% for race in @races %>
-          <<option value="<%= race %>"><%= race %></option>
-        <% end %>
-      </select>
-      <p id="error-race"></p>
-      <label for="pet[country]">Pays</label>
-      <%= country_select("pet", "country", { class: 'select ui-widget-content ui-corner-all', id: 'country' }, selected: "GB") %>
-      <p id="error-country"></p>
-      <label for="pet[birth_date]">Date de naissance</label>
-      <input type="date" name="pet[birth_date]" id="birth_date" class="date ui-widget-content ui-corner-all">
-      <p id="error-birth_date"></p>
-      <label for="pet[death_date]">Date de départ au ciel</label>
-      <input type="date" name="pet[death_date]" id="death_date" class="date ui-widget-content ui-corner-all">
-      <p id="error-death_date"></p>
-      <label for="pet[picture]">Photo</label>
-      <input type="file" name="pet[picture]" id="picture" class="file ui-widget-content ui-corner-all">
-      <p id="error-picture"></p>
-      <!-- Allow form submission with keyboard without duplicating the dialog button -->
-      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-    </fieldset>
-  </form>
-</div>
-
-<div id="dialog-message">
-  <div>
-    <span id="popup-pet-race" class="popup-pet-info"></span>
-    <span id="popup-pet-country" class="flag-icon"></span>
-  </div>
-  <p class="popup-pet-info">Né(e) le <span id="popup-pet-birth"></span></p>
-  <p class="popup-pet-info">Monté(e) au ciel le <span id="popup-pet-death"></span></p>
-  <img id="popup-pet-photo" src="" class="medium-zoom-image">
-</div>
-
-<div id="dialog-info" title="Bienvenue sur Pet Memorial !">
-  <p>
-    Ici vous trouverez une constellation d’étoiles, chacune représentant un animal de compagnie parti au ciel. 🙏🏻
-  </p>
-  <p>
-    Cliquez sur un point pour en apprendre davantage sur un animal, et n’hésitez pas à partager avec nous vos compagnons afin qu’ils rejoignent ce grand paradis virtuel. ✨
-  </p>
-  <p>
-    Ainsi, qu’ils soient à poils, à plumes, à écailles ou autres, nos animaux adorés resteront à jamais sur Pet Memorial ! 💕
-  </p>
-  <p style="font-size: 9px;">Favicon made by <a style="font-size: 9px;" href="https://www.flaticon.com/authors/freepik">Freepik</a> from <a style="font-size: 9px;" href="https://www.flaticon.com/"> www.flaticon.com</a></p>
-</div>
+<%= render partial: 'canva' %>
+<%= render partial: 'buttons' %>
+<%= render partial: 'form' %>
+<%= render partial: 'show' %>
+<%= render partial: 'info' %>
 
 <script type="text/javascript">
   var particles = [];
