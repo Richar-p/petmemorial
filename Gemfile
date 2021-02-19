@@ -36,6 +36,8 @@ gem 'activestorage-database-service', github: 'TitovDigital/activestorage-databa
 gem 'rails-i18n', '~> 6.0.0'
 #date validatior
 gem 'date_validator'
+#webpacker
+gem 'webpacker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
