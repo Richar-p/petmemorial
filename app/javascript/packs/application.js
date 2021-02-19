@@ -13,7 +13,6 @@ require('select2')
 require('select2/dist/css/select2.css')
 import('materialize-css')
 import('material-icons');
-import 'medium-zoom/dist/medium-zoom.min.js';
 import 'flag-icon-css/css/flag-icon.css'
 import '../scss/application.scss';
 
