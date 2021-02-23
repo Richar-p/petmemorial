@@ -1,0 +1,40 @@
+<script type="text/javascript" charset="utf-8">
+  dialog        = $("#dialog-form").dialog({
+      autoOpen: false,
+      height: 600,
+      width: 350,
+      buttons: {
+          "Ajouter un animal": function() {
+              $.ajax({
+                  url : '/addpet',
+                  type: 'POST',
+                  processData: false,
+                  contentType: false,
+                  data: new FormData(document.getElementById('dialog-form').querySelector('form')),
+                  success: function(response){
+                      dialog.dialog( "close" );
+                      $('#dialog-form form')[0].reset()
+                      M.toast({ html: "Votre contribution a été envoyée avec succès, un administrateur doit maintenant la valider pour qu\'elle apparaisse", displayLength: 7000})
+                  },
+                  error: function(response){
+                      Object.keys(response['responseJSON']).forEach(function(key) {
+                          document.getElementById('error-' + key).innerHTML = response['responseJSON'][key][0]
+                      });
+                  }
+              });
+          },
+          Annuler: function() {
+              sessionStorage.setItem('add-popup', 0);
+              dialog.dialog( "close" );
+          }
+      }
+  });
+  var popupPet  = $("#dialog-message").dialog({
+      autoOpen: false
+  });
+  var popupInfo = $("#dialog-info").dialog({
+      autoOpen: false,
+      width: 450
+  });
+  sessionStorage.setItem('add-popup', 0);
+</script>

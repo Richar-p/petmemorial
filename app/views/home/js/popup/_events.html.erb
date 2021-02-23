@@ -1,0 +1,36 @@
+<script type="text/javascript" charset="utf-8">
+  window.addEventListener('mousedown', e => {
+      mouseX = parseInt(e.clientX - $('#canvas').offset().left);
+      mouseY = parseInt(e.clientY - $('#canvas').offset().top);
+
+      for (var i = 0; i < particles.length; i++) {
+          var particle = particles[i];
+          var dx = mouseX - particle.x;
+          var dy = mouseY - particle.y;
+          if ((dx * dx + dy * dy < Math.pow(particle.radius,2)+2000) && sessionStorage.getItem('add-popup') == 0) {
+              clearPetPopup();
+              $('#popup-pet-photo').prop('src', particle.picture)
+              $('#dialog-message').dialog( "option", "title", particle.name );
+              sessionStorage.setItem('flag', 'flag-icon-' + particle.country.toLowerCase())
+              $('#popup-pet-country').addClass('flag-icon-' + particle.country.toLowerCase());
+              document.getElementById('popup-pet-race').innerHTML = particle.race
+              document.getElementById('popup-pet-birth').innerHTML = particle.birth_date
+              document.getElementById('popup-pet-death').innerHTML = particle.death_date
+              popupPet.dialog("open")
+          }
+      }
+  });
+  $( "#popupAdd" ).on( "click", function() {
+      sessionStorage.setItem('add-popup', 1);
+      dialog.dialog( "open" );
+  });
+  $("#dialog-form").on("dialogclose", function() {
+      sessionStorage.setItem('add-popup', 0);
+  });
+  $("#dialog-message").on("dialogclose", function() {
+      clearPetPopup();
+  });
+  $("#popupInfo").on( "click", function() {
+      popupInfo.dialog( "open" );
+  });
+</script>

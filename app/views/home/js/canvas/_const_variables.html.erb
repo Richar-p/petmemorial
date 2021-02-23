@@ -1,0 +1,14 @@
+<script type="text/javascript" charset="utf-8">
+  const opts        = {
+      particleColor: "rgb(200,200,200)",
+      lineColor: "rgb(200,200,200)",
+      particleAmount: <%= @pets.count %>,
+      defaultSpeed: 0.15,
+      variantSpeed: 0.05,
+      defaultRadius: 3,
+      variantRadius: 1,
+      linkRadius: 100,
+  };
+  const canvasBody  = document.getElementById("canvas");
+  const drawArea    = canvasBody.getContext("2d");
+</script>
