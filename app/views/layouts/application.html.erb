@@ -34,7 +34,6 @@
     </script>
     <%= yield %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <% if Rails.env.production? %>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98P43HEYEK"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -43,6 +42,5 @@
 
         gtag('config', 'G-98P43HEYEK');
     </script>
-    <% end %>
   </body>
 </html>
