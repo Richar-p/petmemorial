@@ -4,16 +4,16 @@
 // that code so it'll be compiled.
 
 require("@rails/ujs").start()
-require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require('webpack-jquery-ui');
 require('webpack-jquery-ui/css');
 require('select2')
 require('select2/dist/css/select2.css')
+import('bootstrap')
 import('materialize-css')
 import('material-icons');
-import 'flag-icon-css/css/flag-icon.css'
+import 'flag-icon-css/css/flag-icon.css';
 import '../scss/application.scss';
 
 

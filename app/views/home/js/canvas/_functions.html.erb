@@ -1,7 +1,7 @@
 <script type="text/javascript" charset="utf-8">
   let resizeReset   = function() {
     w = canvasBody.width = window.innerWidth;
-    h = canvasBody.height = window.innerHeight;
+    h = canvasBody.height = window.innerHeight - $('nav').height();
   }
   let deBouncer     = function() {
     clearTimeout(tid);

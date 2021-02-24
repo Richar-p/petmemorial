@@ -39,4 +39,8 @@
   sessionStorage.setItem('add-popup', 0);
   mediumZoom('#popup-pet-photo')
   $('select').select2({ width: '100%' });
+  $('document').ready(function () {
+    $(".dropdown-trigger").dropdown({ constrainWidth: false });
+  })
+
 </script>
