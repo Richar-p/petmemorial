@@ -36,6 +36,8 @@ gem 'rails-i18n', '~> 6.0.0'
 gem 'date_validator'
 #webpacker
 gem 'webpacker'
+#templating
+gem 'slim'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
