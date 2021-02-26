@@ -377,6 +377,8 @@ fr:
         picture: Photo
         submit: Ajouter un animal
         cancel: Annuler
+        thank: Merci !
+        ok: "Votre contribution a été envoyée avec succès, un administrateur doit maintenant la valider pour qu'elle apparaisse"
       show:
         birth_date: Né(e) le
         death_date: Monté(e) au ciel le

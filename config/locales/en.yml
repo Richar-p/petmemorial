@@ -212,6 +212,8 @@ en:
         picture: Photo
         submit: Submit a pet
         cancel: Cancel
+        thank: Thank you!
+        ok: "Your contribution has been successfully sent, it will be verified by an administrator to appear"
       show:
         birth_date: Born the
         death_date: In gone the

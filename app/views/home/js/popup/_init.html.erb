@@ -14,7 +14,7 @@
                   success: function(response){
                       dialog.dialog( "close" );
                       $('#dialog-form form')[0].reset()
-                      M.toast({ html: "Votre contribution a été envoyée avec succès, un administrateur doit maintenant la valider pour qu\'elle apparaisse", displayLength: 7000})
+                      $('#success-toast').toast('show')
                   },
                   error: function(response){
                       Object.keys(response['responseJSON']).forEach(function(key) {
