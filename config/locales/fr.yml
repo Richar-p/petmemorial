@@ -356,3 +356,41 @@ fr:
       block: "Liste"
       grid: "Grille"
       blog: "Blog"
+  content:
+    nav:
+      add: Ajouter un animal
+      about-us: À propos
+      donation: Faire un don
+    pop-ups:
+      about-us:
+        title: "Bienvenue sur PetMemorial !"
+        first: "Ici vous trouverez une constellation d’étoiles, chacune représentant un animal de compagnie parti au ciel. 🙏🏻"
+        second: "Cliquez sur un point pour en apprendre davantage sur un animal, et n’hésitez pas à partager avec nous vos compagnons afin qu’ils rejoignent ce grand paradis virtuel. ✨"
+        third: "Ainsi, qu’ils soient à poils, à plumes, à écailles ou autres, nos animaux adorés resteront à jamais sur Pet Memorial ! 💕"
+      form:
+        title: Ajouter un animal de compagnie
+        name: Nom
+        race: Espèce
+        country: Pays
+        birth_date: Date de naissance
+        death_date: Date de départ au ciel
+        picture: Photo
+        submit: Ajouter un animal
+        cancel: Annuler
+      show:
+        birth_date: Né(e) le
+        death_date: Monté(e) au ciel le
+    shared:
+      species:
+        chien: Chien
+        chat: Chat
+        furet: Furet
+        volatile: Volatile
+        bovin: Bovin
+        reptile: Reptile
+        arachnide: Arachnide
+        amphibien: Amphibien
+        équidé: Équidé
+        rongeur: Rongeur
+        lapin: Lapin
+        poisson: Poisson

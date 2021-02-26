@@ -30,7 +30,7 @@
   let setup         = function() {
     resizeReset();
     <% for pet in @pets %>
-    particles.push( new Particle(0,0, "<%= pet.name %>", "<%= pet.country %>", "<%= pet.race %>", "<%= pet.birth_date.strftime('%d/%m/%Y') %>", "<%= pet.death_date.strftime('%d/%m/%Y') %>", "<%= pet.picture.present? ? url_for(pet.picture) : nil %>") );
+      particles.push( new Particle(0,0, "<%= pet.name %>", "<%= pet.country %>", "<%= t("content.shared.species.#{pet.race.downcase}") %>", "<%= pet.birth_date.strftime('%d/%m/%Y') %>", "<%= pet.death_date.strftime('%d/%m/%Y') %>", "<%= pet.picture.present? ? url_for(pet.picture) : nil %>") );
     <% end %>
     window.requestAnimationFrame(loop);
   }

@@ -1,31 +1,31 @@
-<div id="dialog-form" title="Ajouter un animal de compagnie" style="height: 600px;">
+<div id="dialog-form" title="<%= t('content.pop-ups.form.title') %>" style="height: 600px;">
   <form enctype="multipart/form-data">
     <fieldset>
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-      <label for="pet[name]">Nom</label>
+      <label for="pet[name]"><%= t('content.pop-ups.form.name') %></label>
       <input type="text" name="pet[name]" id="name" placeholder="Jane Smith" class="text ui-widget-content ui-corner-all">
       <p id="error-name"></p>
-      <label for="pet[race]">Espèce</label>
+      <label for="pet[race]"><%= t('content.pop-ups.form.race') %></label>
       <select class="select ui-widget-content ui-corner-all" name="pet[race]" id="race">
         <% for race in @races %>
-          <<option value="<%= race %>"><%= race %></option>
+          <<option value="<%= race %>"><%= t("content.shared.species.#{race.downcase}") %></option>
         <% end %>
       </select>
       <p id="error-race"></p>
-      <label for="pet[country]">Pays</label>
+      <label for="pet[country]"><%= t('content.pop-ups.form.country') %></label>
       <%= country_select("pet", "country", { class: 'select ui-widget-content ui-corner-all', id: 'country' }, selected: "FR") %>
       <p id="error-country"></p>
-      <label for="pet[birth_date]">Date de naissance</label>
+      <label for="pet[birth_date]"><%= t('content.pop-ups.form.birth_date') %></label>
       <input type="date" name="pet[birth_date]" id="birth_date" class="date ui-widget-content ui-corner-all">
       <p id="error-birth_date"></p>
-      <label for="pet[death_date]">Date de départ au ciel</label>
+      <label for="pet[death_date]"><%= t('content.pop-ups.form.death_date') %></label>
       <input type="date" name="pet[death_date]" id="death_date" class="date ui-widget-content ui-corner-all">
       <p id="error-death_date"></p>
-      <label for="pet[picture]">Photo</label>
+      <label for="pet[picture]"><%= t('content.pop-ups.form.picture') %></label>
       <input type="file" name="pet[picture]" id="picture" class="file ui-widget-content ui-corner-all">
       <p id="error-picture"></p>
       <!-- Allow form submission with keyboard without duplicating the dialog button -->
-      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px" value="<%= t('content.pop-ups.form.submit') %>">
     </fieldset>
   </form>
 </div>

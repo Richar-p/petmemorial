@@ -18,7 +18,7 @@ module PetMemorial
     config.assets.enabled = true
     config.encoding = "utf-8"
     I18n.available_locales = [:fr, :en]
-    config.i18n.default_locale = :fr
+    config.i18n.default_locale = :en
   end
 end
 

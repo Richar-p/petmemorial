@@ -7,12 +7,15 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-bottom
       li.nav-item
         a#popupAdd.nav-link style=("cursor: pointer;")
           i.bi.bi-plus-circle>
-          | Ajouter un animal
+          |
+          = t('content.nav.add')
       li.nav-item
         a#popupInfo.nav-link style=("cursor: pointer;")
           i.bi.bi-question-circle>
-          | À propos
+          |
+          = t('content.nav.about-us')
       li.nav-item
         a.nav-link href="http://paypal.me/RichardPeter" target="_blank" 
           i.bi.bi-cash-stack>
-          | Faire un don
+          |
+          = t('content.nav.donation')
