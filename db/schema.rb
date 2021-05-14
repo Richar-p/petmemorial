@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_15_162354) do
+ActiveRecord::Schema.define(version: 2021_05_14_200606) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -74,6 +74,12 @@ ActiveRecord::Schema.define(version: 2020_08_15_162354) do
     t.date "birth_date"
     t.date "death_date"
     t.boolean "is_published"
+  end
+
+  create_table "visitors", force: :cascade do |t|
+    t.string "ip_address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

@@ -10,12 +10,12 @@ require('webpack-jquery-ui');
 require('webpack-jquery-ui/css');
 require('select2')
 require('select2/dist/css/select2.css')
+import "chartkick/chart.js"
 import('bootstrap')
 import('materialize-css')
 import('material-icons');
 import 'flag-icon-css/css/flag-icon.css';
 import '../scss/application.scss';
-
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

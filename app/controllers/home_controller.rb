@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+    Visitor.create(ip_address: request.remote_ip)
     @pets = Pet.published
     @races = Pet::RACE
   end
