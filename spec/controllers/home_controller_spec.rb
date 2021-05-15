@@ -1,4 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe HomeController, type: :controller do
   it { should_not respond_to :new }
@@ -8,8 +10,8 @@ RSpec.describe HomeController, type: :controller do
   it { should respond_to :index }
   it { should respond_to :create }
 
-  describe 'index' do
-    it '#index' do
+  describe "index" do
+    it "#index" do
       get :index
       expect(response).to render_template :index
     end

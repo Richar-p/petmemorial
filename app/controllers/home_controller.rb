@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HomeController < ApplicationController
   def index
     Visitor.create(ip_address: request.remote_ip)
@@ -15,8 +17,7 @@ class HomeController < ApplicationController
   end
 
   private
-
-  def pet_params
-    params.require(:pet).permit(:name, :birth_date, :death_date, :race, :country, :picture)
-  end
+    def pet_params
+      params.require(:pet).permit(:name, :birth_date, :death_date, :race, :country, :picture)
+    end
 end

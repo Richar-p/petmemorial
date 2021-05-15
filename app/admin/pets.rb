@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Pet do
-  actions :all, :except => [:create, :new]
+  actions :all, except: [:create, :new]
 
   scope :all, default: true
-  scope('Need validation') { |pet| pet.where(is_published: false) }
+  scope("Need validation") { |pet| pet.where(is_published: false) }
 
   action_item :publish, only: %i[show] do
-    link_to('Rendre public', make_public_admin_pet_path(pet), method: :put) unless pet.is_published
+    link_to("Rendre public", make_public_admin_pet_path(pet), method: :put) unless pet.is_published
   end
 
   member_action :make_public, method: :put do
@@ -15,7 +17,7 @@ ActiveAdmin.register Pet do
   end
 
   action_item :unpublish, only: %i[show] do
-    link_to('Rendre privé', make_private_admin_pet_path(pet), method: :put) if pet.is_published
+    link_to("Rendre privé", make_private_admin_pet_path(pet), method: :put) if pet.is_published
   end
 
   member_action :make_private, method: :put do
@@ -35,7 +37,7 @@ ActiveAdmin.register Pet do
       row :country
       row :is_published
       row :picture do |ad|
-        image_tag ad.picture, :style => "width: 100%;" if ad.picture.present?
+        image_tag ad.picture, style: "width: 100%;" if ad.picture.present?
       end
     end
     active_admin_comments

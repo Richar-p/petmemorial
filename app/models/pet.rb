@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Pet < ApplicationRecord
   RACE = %w[Chien Chat Furet Volatile Bovin Reptile Arachnide Amphibien Équidé Rongeur Lapin Poisson]
 
