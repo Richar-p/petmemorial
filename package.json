@@ -13,7 +13,6 @@
     "flag-icon-css": "^3.5.0",
     "jquery": "^3.5.1",
     "material-icons": "^0.5.3",
-    "materialize-css": "^1.0.0",
     "popper.js": "^1.16.1",
     "select2": "^4.1.0-rc.0",
     "webpack-jquery-ui": "^2.0.1"
