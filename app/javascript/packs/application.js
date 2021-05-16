@@ -12,7 +12,6 @@ require('select2')
 require('select2/dist/css/select2.css')
 import "chartkick/chart.js"
 import('bootstrap')
-import('materialize-css')
 import('material-icons');
 import 'flag-icon-css/css/flag-icon.css';
 import '../scss/application.scss';
