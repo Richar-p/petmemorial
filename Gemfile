@@ -42,7 +42,8 @@ gem "webpacker"
 gem "slim"
 # seo
 gem "chartkick"
-gem "groupdate"
+gem 'groupdate'
+gem 'active_period'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

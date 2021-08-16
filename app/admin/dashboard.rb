@@ -10,21 +10,58 @@ ActiveAdmin.register_page "Dashboard" do
       h2 "Nombre de visites au total: #{Visitor.all.count}"
     end
 
-    table do
-      thead do
-        tr do
-          th do
-            "Statistiques de visiteurs"
+    columns do
+      column id: 'by_day' do
+        table do
+          thead do
+            tr do
+              th do
+                "Statistiques de visiteurs totaux par jour"
+              end
+            end
+          end
+          tbody do
+            tr do
+              td { div line_chart Visitor.group_by_day(:created_at).count }
+            end
           end
         end
       end
-      tbody do
-        tr do
-          td do
-            div line_chart Visitor.group_by_day(:created_at).count
+
+      column id: 'by_week' do
+        table do
+          thead do
+            tr do
+              th do
+                "Statistiques de visiteurs totaux par semaine"
+              end
+            end
+          end
+          tbody do
+            tr do
+              td { div line_chart Visitor.group_by_week(:created_at).count }
+            end
+          end
+        end
+      end
+
+      column id: 'by_month' do
+        table do
+          thead do
+            tr do
+              th do
+                "Statistiques de visiteurs totaux par mois"
+              end
+            end
+          end
+          tbody do
+            tr do
+              td { div line_chart Visitor.group_by_month(:created_at).count }
+            end
           end
         end
       end
     end
+
   end
 end
