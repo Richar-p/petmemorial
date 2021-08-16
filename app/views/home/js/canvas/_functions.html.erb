@@ -45,4 +45,11 @@
       linkPoints(particles[i], particles);
     }
   }
+  let tooltipMargin = function(dimension, position) {
+    if(dimension == "y") {
+        return position <= 50 ? position + 20 : position - 40
+    } else if (dimension == "x") {
+        return position >= window.innerWidth - 220 ? position - 200 : position
+    }
+  }
 </script>
