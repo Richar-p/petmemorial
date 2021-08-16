@@ -3,7 +3,7 @@
 class HomeController < ApplicationController
   def index
     Visitor.create(ip_address: request.remote_ip)
-    @pets = Pet.published
+    @pets = Pet.by_name(params[:name]).published
     @races = Pet::RACE
   end
 

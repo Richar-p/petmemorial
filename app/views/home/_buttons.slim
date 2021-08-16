@@ -19,9 +19,14 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-bottom
           i.bi.bi-cash-stack>
           |
           = t('content.nav.donation')
-      li.nav-item.ml-auto
+      li.nav-item.ml-3
+        form action= request.env["REQUEST_URI"] method="GET"
+          input type="hidden" name="locale" value=params[:locale]
+          .input-group
+            input type="text" class="form-control" name="name" value=params[:name]
+            button class="btn btn-outline-secondary" type="submit" id="button-addon2" Rechercher
+      li.nav-item.ml-auto.d-flex
         button.nav-link.btn.btn-dark onclick="window.location.href='/?locale=fr'"
           span.flag-icon.flag-icon-fr
-      li.nav-item
         button.nav-link.btn.btn-dark onclick="window.location.href='/?locale=en'"
           span.flag-icon.flag-icon-us

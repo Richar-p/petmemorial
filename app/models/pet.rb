@@ -12,4 +12,5 @@ class Pet < ApplicationRecord
 
 
   scope :published, -> { where("is_published = true") }
+  scope :by_name, ->(name) { where('name LIKE ?', "%#{name}%") }
 end
