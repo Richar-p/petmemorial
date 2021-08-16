@@ -11,6 +11,42 @@ ActiveAdmin.register_page "Dashboard" do
     end
 
     columns do
+      column do
+        table do
+          thead do
+            tr do
+              th do
+                "Statistiques de visiteurs aujourd'hui/heures"
+              end
+            end
+          end
+          tbody do
+            tr do
+              td { div line_chart Visitor.today.group_by_hour(:created_at).count }
+            end
+          end
+        end
+      end
+
+      column do
+        table do
+          thead do
+            tr do
+              th do
+                "Statistiques de visiteurs aujourd'hui/minutes"
+              end
+            end
+          end
+          tbody do
+            tr do
+              td { div line_chart Visitor.today.group_by_minute(:created_at).count }
+            end
+          end
+        end
+      end
+    end
+
+    columns do
       column id: 'by_day' do
         table do
           thead do
