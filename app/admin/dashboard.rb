@@ -47,7 +47,7 @@ ActiveAdmin.register_page "Dashboard" do
     end
 
     columns do
-      column id: 'by_day' do
+      column id: "by_day" do
         table do
           thead do
             tr do
@@ -64,7 +64,7 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
 
-      column id: 'by_week' do
+      column id: "by_week" do
         table do
           thead do
             tr do
@@ -81,7 +81,7 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
 
-      column id: 'by_month' do
+      column id: "by_month" do
         table do
           thead do
             tr do
@@ -98,6 +98,5 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
     end
-
   end
 end

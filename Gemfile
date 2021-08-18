@@ -26,8 +26,8 @@ gem "jbuilder", "~> 2.7"
 gem "activeadmin"
 gem "devise"
 gem "country_select"
-gem 'active_material'
-gem 'font_awesome'
+gem "active_material"
+gem "font_awesome"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false
 # cors
@@ -44,8 +44,8 @@ gem "webpacker"
 gem "slim"
 # seo
 gem "chartkick"
-gem 'groupdate'
-gem 'active_period'
+gem "groupdate"
+gem "active_period"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
