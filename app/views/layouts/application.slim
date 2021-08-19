@@ -1,7 +1,7 @@
 doctype html
-html
+html lang=I18n.locale
   head
-    title PetMemorial
+    = render partial: 'layouts/seo'
     = csrf_meta_tags
     = csp_meta_tag
     = javascript_pack_tag 'application'
@@ -11,6 +11,7 @@ html
     integrity="sha512-N9IJRoc3LaP3NDoiGkcPa4gG94kapGpaA5Zq9/Dr04uf5TbLFU5q0o8AbRhLKUUlp8QFS2u7S+Yti0U7QtuZvQ=="
     crossorigin="anonymous")
   body
+    h1 style="display: none;" PetMemorial 🐶🐱
     = render partial: 'layouts/shared_functions'
     = yield
     = render partial: 'layouts/gtag'
