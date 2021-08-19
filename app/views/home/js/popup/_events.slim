@@ -12,7 +12,7 @@ javascript:
 
               $.get('/' + particle.id,
                 function (data) {
-                  $('#popup-pet-photo').prop('src', data.picture)
+                  $('#popup-pet-photo').prop('src', data.picture_url)
                   $('#dialog-message').dialog( "option", "title", data.name );
                   sessionStorage.setItem('flag', 'flag-icon-' + data.country.toLowerCase())
                   $('#popup-pet-country').addClass('flag-icon-' + data.country.toLowerCase());
