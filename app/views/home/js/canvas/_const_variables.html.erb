@@ -2,7 +2,7 @@
   const opts        = {
       particleColor: "rgb(200,200,200)",
       lineColor: "rgb(200,200,200)",
-      particleAmount: <%= @pets.count %>,
+      particleAmount: <%= @pets.size %>,
       defaultSpeed: 0.15,
       variantSpeed: 0.05,
       defaultRadius: getDeviceType() == "desktop" ? 3 : 10,

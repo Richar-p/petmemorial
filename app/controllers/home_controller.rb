@@ -1,10 +1,17 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
+
+  skip_before_action :verify_authenticity_token, only: :show
+
   def index
     Visitor.create(ip_address: request.remote_ip)
-    @pets = Pet.includes(:picture_attachment).by_name(params[:name]).published
+    @pets = Pet.by_name(params[:name]).published.select(:id, :name, :race, :country)
     @races = Pet::RACE
+  end
+
+  def show
+    render json: Pet.includes(:picture_attachment).find(params[:id]), serializer: PetSerializer
   end
 
   def create

@@ -1,11 +1,11 @@
 javascript:
-  Particle = function(xPos, yPos, name, country, race, birth_date, death_date, picture) {
+  Particle = function(xPos, yPos, id, name, country, race) {
+    this.id = id;
     this.name = name;
     this.country = country;
     this.race = race;
-    this.birth_date = birth_date;
-    this.death_date = death_date;
-    this.picture = picture;
+
+
     this.x = Math.random() * w;
     this.y = Math.random() * h;
     this.speed = opts.defaultSpeed + Math.random() * opts.variantSpeed;

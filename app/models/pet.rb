@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Pet < ApplicationRecord
+
   RACE = %w[Chien Chat Furet Volatile Bovin Reptile Arachnide Amphibien Équidé Rongeur Lapin Poisson]
 
   has_one_attached :picture
@@ -10,7 +11,7 @@ class Pet < ApplicationRecord
   validates :birth_date, date: { before: Proc.new { Time.now } }
   validates :death_date, date: { after: :birth_date, before: Proc.new { Time.now } }
 
-
   scope :published, -> { where("is_published = true") }
   scope :by_name, ->(name) { where("name LIKE ?", "%#{name}%") }
+
 end
