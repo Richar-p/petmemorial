@@ -1,0 +1,12 @@
+form action=root_path method="GET"
+  input type="hidden" name="locale" value=params[:locale]
+  .input-group
+    input type="text" class="form-control" name="name" placeholder=params[:name]
+    button class="btn btn-outline-secondary" type="submit" id="button-addon2" Rechercher
+    - if params[:name].present?
+      button class="btn btn-outline-danger" type="button" onclick="$('#abort-search-form').submit()" id="button-addon2" Annuler
+
+
+form action=root_path method="GET" id="abort-search-form"
+  input type="hidden" name="locale" value=params[:locale]
+  input type="hidden" name="name" value=''

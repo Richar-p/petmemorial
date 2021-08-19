@@ -20,11 +20,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-bottom
           |
           = t('content.nav.donation')
       li.nav-item.ml-3
-        form action= request.env["REQUEST_URI"] method="GET"
-          input type="hidden" name="locale" value=params[:locale]
-          .input-group
-            input type="text" class="form-control" name="name" value=params[:name]
-            button class="btn btn-outline-secondary" type="submit" id="button-addon2" Rechercher
+        = render partial: 'search'
       li.nav-item.ml-auto.d-flex
         button.nav-link.btn.btn-dark onclick="window.location.href='/?locale=fr'"
           span.flag-icon.flag-icon-fr
