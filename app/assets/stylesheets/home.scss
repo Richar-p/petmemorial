@@ -129,3 +129,45 @@ select {
   width : 100%;
   cursor : wait;
 }
+
+.pointer {
+  cursor: pointer;
+}
+
+.canva-tooltip {
+  left: -2000px;
+  height: 25;
+  width: 200;
+}
+
+.no-display {
+  display: none;
+}
+
+#popup-pet-country {
+  margin-left: 10%;
+}
+
+.toast-wrapper {
+  position: relative;
+  min-height: 200px;
+}
+
+.toast {
+  position: absolute;
+  top: 5%;
+  right: 2%;
+}
+
+.height-600px {
+  height: 600px;
+}
+
+.submit-popup-form {
+  position:absolute;
+  top:-1000px;
+}
+
+.font-9px {
+  font-size: 9px !important;
+}

@@ -1,4 +1,4 @@
-<div id="dialog-form" title="<%= t('content.pop-ups.form.title') %>" style="height: 600px;">
+<div id="dialog-form" title="<%= t('content.pop-ups.form.title') %>" class="height-600px">
   <form enctype="multipart/form-data">
     <fieldset>
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
@@ -25,7 +25,7 @@
       <input type="file" name="pet[picture]" id="picture" class="file ui-widget-content ui-corner-all">
       <p id="error-picture"></p>
       <!-- Allow form submission with keyboard without duplicating the dialog button -->
-      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px" value="<%= t('content.pop-ups.form.submit') %>">
+      <input type="submit" tabindex="-1" class="submit-popup-form" value="<%= t('content.pop-ups.form.submit') %>">
     </fieldset>
   </form>
 </div>

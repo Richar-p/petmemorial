@@ -14,6 +14,7 @@
                   success: function(response){
                       dialog.dialog( "close" );
                       $('#dialog-form form')[0].reset()
+                      $('#success-toast').toast({ delay: 3000 })
                       $('#success-toast').toast('show')
                   },
                   error: function(response){
