@@ -12,7 +12,7 @@ javascript:
           var particle = particles[i];
           var dx = mouseX - particle.x;
           var dy = mouseY - particle.y;
-          if (dx * dx + dy * dy < Math.pow(particle.radius,2)+2000) {
+          if (dx * dx + dy * dy < Math.pow(particle.radius,2)+100) {
               particle.speed = 0
               tipCanvas.style.left = tooltipMargin("x", particle.x) + "px";
               tipCanvas.style.top = tooltipMargin("y", particle.y) + "px";
