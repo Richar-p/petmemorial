@@ -7,18 +7,18 @@ javascript:
           var particle = particles[i];
           var dx = mouseX - particle.x;
           var dy = mouseY - particle.y;
-          if ((dx * dx + dy * dy < Math.pow(particle.radius,2)+2000) && sessionStorage.getItem('add-popup') == 0) {
+          if ((dx * dx + dy * dy < Math.pow(particle.radius,2)+100) && sessionStorage.getItem('add-popup') == 0) {
               Packs.application.clearPetPopup();
 
               $.get('/' + particle.id,
                 function (data) {
-                  $('#popup-pet-photo').prop('src', data.picture_url)
-                  $('#dialog-message').dialog( "option", "title", data.name );
-                  sessionStorage.setItem('flag', 'flag-icon-' + data.country.toLowerCase())
+                  $('#popup-pet-photo').prop('src', data.picture_url);
+                  popupPet.dialog( "option", "title", data.name );
+                  sessionStorage.setItem('flag', 'flag-icon-' + data.country.toLowerCase());
                   $('#popup-pet-country').addClass('flag-icon-' + data.country.toLowerCase());
-                  document.getElementById('popup-pet-race').innerHTML = data.race
-                  document.getElementById('popup-pet-birth').innerHTML = data.birth_date
-                  document.getElementById('popup-pet-death').innerHTML = data.death_date
+                  document.getElementById('popup-pet-race').innerHTML = data.race;
+                  document.getElementById('popup-pet-birth').innerHTML = data.birth_date;
+                  document.getElementById('popup-pet-death').innerHTML = data.death_date;
                   popupPet.dialog("open")
                 }
               );

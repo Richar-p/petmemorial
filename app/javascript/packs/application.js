@@ -6,13 +6,14 @@
 require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
-require('webpack-jquery-ui');
-require('webpack-jquery-ui/css');
+
 require('select2')
 require('select2/dist/css/select2.css')
 require('material-icons');
 require("chartkick/chart.js")
-
+import('bootstrap')
+import 'flag-icon-css/css/flag-icon.css';
+import '../scss/application.scss';
 import { clearPetPopup } from '../src/pop_up';
 import { deBouncer, checkDistance, linkPoints, loop, tooltipMargin } from '../src/canva';
 
