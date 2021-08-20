@@ -5,9 +5,9 @@
       particleAmount: <%= @pets.size %>,
       defaultSpeed: 0.15,
       variantSpeed: 0.05,
-      defaultRadius: getDeviceType() == "desktop" ? 3 : 10,
+      defaultRadius: Packs.application.getDeviceType() == "desktop" ? 3 : 10,
       variantRadius: 1,
-      linkRadius: getDeviceType() == "desktop" ? 100 : 500,
+      linkRadius: Packs.application.getDeviceType() == "desktop" ? 100 : 500,
   };
   const canvasBody  = document.getElementById("canvas");
   const drawArea    = canvasBody.getContext("2d");

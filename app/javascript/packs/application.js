@@ -10,18 +10,23 @@ require('webpack-jquery-ui');
 require('webpack-jquery-ui/css');
 require('select2')
 require('select2/dist/css/select2.css')
-import "chartkick/chart.js"
-import('bootstrap')
-import('material-icons');
-import 'flag-icon-css/css/flag-icon.css';
-import '../scss/application.scss';
+require('material-icons');
+require("chartkick/chart.js")
+
 import { clearPetPopup } from '../src/pop_up';
 import { deBouncer, checkDistance, linkPoints, loop, tooltipMargin } from '../src/canva';
 
 export { clearPetPopup, deBouncer, checkDistance, linkPoints, loop, tooltipMargin }
-// Uncomment to copy all static images under ../images to the output folder and reference
-// them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
-// or the `imagePath` JavaScript helper below.
-//
-// const images = require.context('../images', true)
-// const imagePath = (name) => images(name, true)
+
+export const getDeviceType = function () {
+    const ua = navigator.userAgent;
+    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+        return "tablet";
+    }
+
+    if (/Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+        return "mobile";
+    }
+
+    return "desktop";
+};
