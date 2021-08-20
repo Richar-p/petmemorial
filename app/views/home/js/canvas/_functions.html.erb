@@ -1,55 +1,14 @@
 <script type="text/javascript" charset="utf-8">
-  let resizeReset   = function() {
-    w = canvasBody.width = window.innerWidth;
-    h = canvasBody.height = window.innerHeight - $('nav').height();
-  }
-  let deBouncer     = function() {
-    clearTimeout(tid);
-    tid = setTimeout(function() {
-      resizeReset();
-    }, delay);
-  };
-  let checkDistance = function(x1, y1, x2, y2) {
-    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-  };
-  let linkPoints    = function(point1, hubs) {
-    for (let i = 0; i < hubs.length; i++) {
-      let distance = checkDistance(point1.x, point1.y, hubs[i].x, hubs[i].y);
-      let opacity = 1 - distance / opts.linkRadius;
-      if (opacity > 0) {
-        drawArea.lineWidth = 0.5;
-        drawArea.strokeStyle = `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${opacity})`;
-        drawArea.beginPath();
-        drawArea.moveTo(point1.x, point1.y);
-        drawArea.lineTo(hubs[i].x, hubs[i].y);
-        drawArea.closePath();
-        drawArea.stroke();
-      }
+     let resizeReset   = function() {
+        w = canvasBody.width = window.innerWidth;
+        h = canvasBody.height = window.innerHeight - $('nav').height();
     }
-  }
+
   let setup         = function() {
     resizeReset();
     <% for pet in @pets %>
       particles.push( new Particle(0,0, "<%= pet.id %>", "<%= pet.name %>", "<%= pet.country %>", "<%= t("content.shared.species.#{pet.race.downcase}") %>") );
     <% end %>
-    window.requestAnimationFrame(loop);
-  }
-  let loop          = function() {
-    window.requestAnimationFrame(loop);
-    drawArea.clearRect(0,0,w,h);
-    for (let i = 0; i < particles.length; i++){
-      particles[i].update();
-      particles[i].draw();
-    }
-    for (let i = 0; i < particles.length; i++){
-      linkPoints(particles[i], particles);
-    }
-  }
-  let tooltipMargin = function(dimension, position) {
-    if(dimension == "y") {
-        return position <= 50 ? position + 20 : position - 40
-    } else if (dimension == "x") {
-        return position >= window.innerWidth - 220 ? position - 200 : position
-    }
+    window.requestAnimationFrame(Packs.application.loop);
   }
 </script>

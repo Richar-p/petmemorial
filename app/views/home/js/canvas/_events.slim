@@ -1,6 +1,6 @@
 javascript:
   window.addEventListener("resize", e => {
-      deBouncer();
+      Packs.application.deBouncer();
   });
   window.addEventListener('mousemove', e => {
       mouseX = parseInt(e.clientX - $('#canvas').offset().left);
@@ -14,8 +14,8 @@ javascript:
           var dy = mouseY - particle.y;
           if (dx * dx + dy * dy < Math.pow(particle.radius,2)+100) {
               particle.speed = 0
-              tipCanvas.style.left = tooltipMargin("x", particle.x) + "px";
-              tipCanvas.style.top = tooltipMargin("y", particle.y) + "px";
+              tipCanvas.style.left = Packs.application.tooltipMargin("x", particle.x) + "px";
+              tipCanvas.style.top = Packs.application.tooltipMargin("y", particle.y) + "px";
               tipCtx.clearRect(0, 0, tipCanvas.width, tipCanvas.height);
               tipCtx.fillText(particle.name + ', ' + particle.race + ', ' + particle.country, 5, 15);
               $("body").css("cursor", "pointer");

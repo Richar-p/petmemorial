@@ -8,7 +8,7 @@ javascript:
           var dx = mouseX - particle.x;
           var dy = mouseY - particle.y;
           if ((dx * dx + dy * dy < Math.pow(particle.radius,2)+2000) && sessionStorage.getItem('add-popup') == 0) {
-              clearPetPopup();
+              Packs.application.clearPetPopup();
 
               $.get('/' + particle.id,
                 function (data) {
@@ -33,7 +33,7 @@ javascript:
       sessionStorage.setItem('add-popup', 0);
   });
   $("#dialog-message").on("dialogclose", function() {
-      clearPetPopup();
+      Packs.application.clearPetPopup();
   });
   $("#popupInfo").on( "click", function() {
       popupInfo.dialog( "open" );
