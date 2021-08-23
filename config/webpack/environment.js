@@ -1,5 +1,6 @@
 const { environment } = require('@rails/webpacker');
 const webpack = require('webpack');
+const TerserPlugin = require("terser-webpack-plugin");
 
 environment.plugins.append('Provide', new webpack.ProvidePlugin({
     $: 'jquery',
@@ -21,6 +22,17 @@ const config = environment.toWebpackConfig();
 
 config.resolve.alias = {
     jquery: 'jquery/src/jquery'
+};
+
+config.optimization = {
+    minimizer: [
+        new TerserPlugin({
+            parallel: true,
+            terserOptions: {
+                ecma: 6,
+            },
+        }),
+    ],
 };
 
 module.exports = environment;
