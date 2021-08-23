@@ -1,4 +1,4 @@
-export let clearPetPopup = function() {
+export var clearPetPopup = function() {
     $('#popup-pet-country').removeClass(sessionStorage.getItem('flag'));
     $('#popup-pet-photo').prop('src', '')
     document.getElementById('popup-pet-race').innerHTML = ''
