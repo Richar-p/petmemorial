@@ -1,5 +1,5 @@
 = render partial: 'canva'
-= render partial: 'buttons'
+= render partial: "buttons#{'_tv' if params['tv'].present?}"
 = render partial: 'form'
 = render partial: 'show'
 = render partial: 'info'
