@@ -14,4 +14,12 @@ class Pet < ApplicationRecord
   scope :published, -> { where("is_published = true") }
   scope :by_name, ->(name) { where("name LIKE ?", "%#{name}%") }
 
+
+  def picture_url
+    if picture.attached?
+      Rails.application.routes.url_helpers.rails_blob_path(picture, only_path: true)
+    else
+      '/icon_background_white.png'
+    end
+  end
 end
