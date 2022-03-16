@@ -22,6 +22,9 @@ nav.navbar.navbar-expand-lg.fixed-bottom class=( @theme.eql?('white') ? 'bg-whit
           = t('content.nav.donation')
       li.nav-item.ml-3
         = render partial: 'search'
+      li.nav-item.ml-1.audio
+        audio
+          source src='/music.wav'
       li.nav-item.ml-auto.d-flex
         button.nav-link.btn onclick="window.location.href='/?locale=fr'" class=( @theme.eql?('white') ? 'btn-white' : 'btn-dark' )
           span.flag-icon.flag-icon-fr

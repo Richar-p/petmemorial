@@ -3,15 +3,17 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-require("@rails/ujs").start()
-require("@rails/activestorage").start()
-require("channels")
+require("@rails/ujs").start();
+require("@rails/activestorage").start();
+require("channels");
 
-require('select2')
-require('select2/dist/css/select2.css')
+require('select2');
+require('select2/dist/css/select2.css');
 require('material-icons');
-require("chartkick/chart.js")
-import('bootstrap')
+require("chartkick/chart.js");
+require("green-audio-player");
+import("green-audio-player");
+import('bootstrap');
 import 'flag-icon-css/css/flag-icon.css';
 import '../scss/application.scss';
 import { clearPetPopup } from '../src/pop_up';
@@ -31,3 +33,7 @@ export const getDeviceType = function () {
 
     return "desktop";
 };
+
+$(document).ready(function() {
+    new GreenAudioPlayer('.audio');
+})
