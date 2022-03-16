@@ -7,8 +7,9 @@ html lang=I18n.locale
     = favicon_link_tag '/icon-no-bg.png'
     = javascript_pack_tag 'style'
     = stylesheet_link_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-darkness/jquery-ui.min.css'
+    script src="https://kit.fontawesome.com/a5815e2125.js" crossorigin="anonymous"
 
-  body
+  body style=('background: #FFF !important' if @theme.eql?('white'))
     h1 class="no-display" PetMemorial 🐶🐱
     = yield
     = render partial: 'flash' unless params['tv'].present?

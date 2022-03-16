@@ -1,6 +1,7 @@
-nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-bottom
+nav.navbar.navbar-expand-lg.fixed-bottom class=( @theme.eql?('white') ? 'bg-white navbar-white' : 'bg-dark navbar-dark' )
+
   = link_to "<img src='/icon-no-bg.png' style='width:40px;'/>".html_safe, root_path, class: 'navbar-brand'
-  button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button" 
+  button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button"
     span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
     ul.navbar-nav.mr-auto.w-100
@@ -22,9 +23,11 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-bottom
       li.nav-item.ml-3
         = render partial: 'search'
       li.nav-item.ml-auto.d-flex
-        button.nav-link.btn.btn-dark onclick="window.location.href='/?locale=fr'"
+        button.nav-link.btn onclick="window.location.href='/?locale=fr'" class=( @theme.eql?('white') ? 'btn-white' : 'btn-dark' )
           span.flag-icon.flag-icon-fr
-        button.nav-link.btn.btn-dark onclick="window.location.href='/?locale=en'"
+        button.nav-link.btn onclick="window.location.href='/?locale=en'" class=( @theme.eql?('white') ? 'btn-white' : 'btn-dark' )
           span.flag-icon.flag-icon-us
-        button.nav-link.btn.btn-dark onclick="window.location.href='/?tv=true'"
+        button.nav-link.btn onclick="window.location.href='/?tv=true'" class=( @theme.eql?('white') ? 'btn-white' : 'btn-dark' )
           p style="margin: auto" TV
+        button.nav-link.btn onclick="window.location.href='/switch_theme'" class=( @theme.eql?('white') ? 'btn-white' : 'btn-dark' )
+          i.fas.fa-cloud-sun
